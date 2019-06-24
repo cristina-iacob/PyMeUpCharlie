@@ -1,10 +1,10 @@
+# Modules
 import os
 import csv 
 
-# Define the path: ./budget_data.csv
-data_path = os.path.join("budget_data.csv")
+# Set path for file 
+csvpath = os.path.join("budget_data.csv")
 
-# Open the file
-with open(data_path, newline='') as data_file:
-
-        budget_data = csv.reader(data_file, delimiter = ",")
+# Open the CSV
+with open(csvpath, newline='') as csvfile:
+        csvreader = csv.reader(csvfile, delimiter = ",")
