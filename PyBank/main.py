@@ -1,10 +1,73 @@
-# Modules
 import os
-import csv 
+import csv
 
-# Set path for file 
-csvpath = os.path.join("budget_data.csv")
+csvpath = os.path.join('budget-data.csv')
 
-# Open the CSV
+#list to store data
+monthList = []
+revenueList = []
+
+# Module for reading CSV files
 with open(csvpath, newline='') as csvfile:
-        csvreader = csv.reader(csvfile, delimiter = ",")
+
+    # CSV reader specifies delimiter and variable that holds contents
+    csvreader = csv.reader(csvfile, delimiter=',')
+
+    # Read the header row first (skip this step if there is now header)
+    csv_header = next(csvreader)
+
+    # read each row of data
+    for row in csvreader:
+        #build up monthList
+        monthList.append(row[0])
+        #build up revenueList
+        revenueList.append(float(row[1]))
+
+    # number of months in the list
+    monthCount = len(monthList)
+
+    # calculate the total revenue
+    revenueTotal = sum(revenueList)
+
+    # calculate average change in revenue over the entire period rounded to 2 decimal places
+    averageChange = round(float((max(revenueList) - min(revenueList)) / monthCount),2)
+
+    # calculate greatest increase in revenue
+    highRevenue = 0
+    for i in range(len(revenueList)):
+        if int(revenueList[i]) - int(revenueList[i - 1]) > highRevenue:
+            highRevenue = int(revenueList[i]) - int(revenueList[i- 1])
+            highMonth = monthList[i]
+
+    # calculate greatest decrease in revenue
+    lowRevenue = 0
+    for j in range(len(revenueList)):
+        if int(revenueList[j]) - int(revenueList[j - 1]) < lowRevenue:
+            lowRevenue = int(revenueList[j]) - int(revenueList[j - 1])
+            lowMonth = monthList[j]
+
+    print("Financial Analysis")
+    print("-------------------------------------")
+    print("Total Months: " + str(monthCount))
+    print("Total: $"  + str(round(revenueTotal)))
+    print("Average Change: $" + str(averageChange))
+    print("Greatest Increase in Profits: " + str(highMonth) + " " + "($" + str(highRevenue) + ")")
+    print("Greatest Decrease in Profits: $" + str(lowMonth) + " " + "($" + str(lowRevenue) + ")")
+
+# Set variable for output file
+output_file = os.path.join("budget_results.txt")
+
+# Open the output file
+with open(output_file, "w") as file:
+#   writer = csv.writer(datafile)
+
+    # Write in budget_results.txt file requested info
+    file.write("--------------------------------------------------- \n")
+    file.write("Financial Analysis \n")
+    file.write("--------------------------------------------------- \n")
+    file.write("Total Months: " + str(monthCount) + "\n")
+    file.write("Total: $"  + str(round(revenueTotal)) + "\n")
+    file.write("Average Change: $" + str(averageChange) + "\n")
+    file.write("Greatest Increase in Profits: " + str(highMonth) + " " + "($" + str(highRevenue) + ")" + "\n")
+    file.write("Greatest Decrease in Profits: $" + str(lowMonth) + " " + "($" + str(lowRevenue) + ")" + "\n")
+    file.write ("--------------------------------------------------- \n")
