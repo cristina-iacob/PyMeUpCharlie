@@ -54,28 +54,33 @@ with open(csvpath, newline='') as csvfile:
             lowRevenue = int(revenueList[j]) - int(revenueList[j - 1])
             lowMonth = monthList[j]
 
-    print("Financial Analysis")
-    print("-------------------------------------")
-    print("Total Months: " + str(monthCount))
-    print("Total: $"  + str(round(revenueTotal)))
-    print("Average Change: $" + str(averageChange))
-    print("Greatest Increase in Profits: " + str(highMonth) + " " + "($" + str(highRevenue) + ")")
-    print("Greatest Decrease in Profits: " + str(lowMonth) + " " + "($" + str(lowRevenue) + ")")
+    displayData = ("Financial Analysis \n" )
+    displayData += ("-------------------------------------\n")
+    displayData += ("Total Months: " + str(monthCount) + "\n")
+    displayData += ("Total: $"  + str(round(revenueTotal)) + "\n")
+    displayData += ("Average Change: $" + str(averageChange)+ "\n")
+    displayData += ("Greatest Increase in Profits: " + str(highMonth) + " " + "($" + str(highRevenue) + ")" + "\n")
+    displayData += ("Greatest Decrease in Profits: " + str(lowMonth) + " " + "($" + str(lowRevenue) + ")"+ "\n")
 
 # Set variable for output file
-output_file = os.path.join("budget_results.txt")
+#output_file = os.path.join("budget_results.txt")
 
 # Open the output file
-with open(output_file, "w") as file:
+#with open(output_file, "w") as file:
 #   writer = csv.writer(datafile)
 
     # Write in budget_results.txt file requested info
-    file.write("--------------------------------------------------- \n")
-    file.write("Financial Analysis \n")
-    file.write("--------------------------------------------------- \n")
-    file.write("Total Months: " + str(monthCount) + "\n")
-    file.write("Total: $"  + str(round(revenueTotal)) + "\n")
-    file.write("Average Change: $" + str(averageChange) + "\n")
-    file.write("Greatest Increase in Profits: " + str(highMonth) + " " + "($" + str(highRevenue) + ")" + "\n")
-    file.write("Greatest Decrease in Profits: " + str(lowMonth) + " " + "($" + str(lowRevenue) + ")" + "\n")
-    file.write ("--------------------------------------------------- \n")
+    #file.write("--------------------------------------------------- \n")
+    #file.write("Financial Analysis \n")
+    #file.write("--------------------------------------------------- \n")
+    #file.write("Total Months: " + str(monthCount) + "\n")
+    #file.write("Total: $"  + str(round(revenueTotal)) + "\n")
+    #file.write("Average Change: $" + str(averageChange) + "\n")
+    #file.write("Greatest Increase in Profits: " + str(highMonth) + " " + "($" + str(highRevenue) + ")" + "\n")
+    #file.write("Greatest Decrease in Profits: " + str(lowMonth) + " " + "($" + str(lowRevenue) + ")" + "\n")
+    #file.write ("--------------------------------------------------- \n")
+
+print(displayData)
+file = open('budget_results.txt',"w")
+file.write(displayData)
+file.close()
