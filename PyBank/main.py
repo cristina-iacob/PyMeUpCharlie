@@ -60,7 +60,7 @@ with open(csvpath, newline='') as csvfile:
     print("Total: $"  + str(round(revenueTotal)))
     print("Average Change: $" + str(averageChange))
     print("Greatest Increase in Profits: " + str(highMonth) + " " + "($" + str(highRevenue) + ")")
-    print("Greatest Decrease in Profits: $" + str(lowMonth) + " " + "($" + str(lowRevenue) + ")")
+    print("Greatest Decrease in Profits: " + str(lowMonth) + " " + "($" + str(lowRevenue) + ")")
 
 # Set variable for output file
 output_file = os.path.join("budget_results.txt")
@@ -77,5 +77,5 @@ with open(output_file, "w") as file:
     file.write("Total: $"  + str(round(revenueTotal)) + "\n")
     file.write("Average Change: $" + str(averageChange) + "\n")
     file.write("Greatest Increase in Profits: " + str(highMonth) + " " + "($" + str(highRevenue) + ")" + "\n")
-    file.write("Greatest Decrease in Profits: $" + str(lowMonth) + " " + "($" + str(lowRevenue) + ")" + "\n")
+    file.write("Greatest Decrease in Profits: " + str(lowMonth) + " " + "($" + str(lowRevenue) + ")" + "\n")
     file.write ("--------------------------------------------------- \n")
