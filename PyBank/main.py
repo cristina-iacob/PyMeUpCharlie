@@ -6,6 +6,9 @@ csvpath = os.path.join('budget-data.csv')
 #list to store data
 monthList = []
 revenueList = []
+monthlyChanges = []
+monthlyChanges_for_month = []
+
 
 # Module for reading CSV files
 with open(csvpath, newline='') as csvfile:
@@ -29,8 +32,6 @@ with open(csvpath, newline='') as csvfile:
     # calculate the total revenue
     revenueTotal = sum(revenueList)
 
-    # calculate average change in revenue over the entire period rounded to 2 decimal places
-    averageChange = round(float((max(revenueList) - min(revenueList)) / monthCount),2)
 
     # calculate greatest increase in revenue
     highRevenue = 0
@@ -38,6 +39,13 @@ with open(csvpath, newline='') as csvfile:
         if int(revenueList[i]) - int(revenueList[i - 1]) > highRevenue:
             highRevenue = int(revenueList[i]) - int(revenueList[i- 1])
             highMonth = monthList[i]
+
+    for k in range(len(revenueList)-1):
+        monthlyChanges.append(revenueList[k + 1] - revenueList[k])
+        monthlyChanges_for_month.append(monthList[k])
+    # calculate average change in revenue over the entire period rounded to 2 decimal places
+    #averageChange = round(float((max(revenueList) - min(revenueList)) / monthCount),2)
+    averageChange = round(sum(monthlyChanges)/len(monthlyChanges), 2)
 
     # calculate greatest decrease in revenue
     lowRevenue = 0
